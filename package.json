@@ -1,0 +1,31 @@
+{
+  "name": "@supersuit/gv-identity",
+  "version": "0.1.0",
+  "description": "The one verifier for the gv_id cookie, the shared garysheng.com sign-in: a compact JWS (ES256, P-256) that says who someone is and never what they may open. Web Crypto only, so it runs in Next.js server routes, middleware and Edge.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist/", "README.md", "LICENSE", "test/gv-identity.vectors.json"],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/check-dist.mjs",
+    "prepack": "npm run build",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "engines": { "node": ">=20.9" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/SupersuitUp/gv-identity.git" },
+  "publishConfig": { "access": "public" },
+  "keywords": ["supersuit", "gv_id", "jws", "es256", "web-crypto", "edge"],
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

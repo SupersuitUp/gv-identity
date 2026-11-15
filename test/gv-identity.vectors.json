@@ -1,0 +1,102 @@
+{
+  "about": "Shared test vectors for gv-identity.ts. Signed once with a THROWAWAY key (public half below; the private half was discarded). Every app that carries gv-identity.ts runs these unchanged.",
+  "publicJwk": {
+    "kty": "EC",
+    "crv": "P-256",
+    "x": "la3gvAM6Km6b96VtToknGVRpwcpclqeL0sqD8IRAQ5s",
+    "y": "-Fwp6arF1ujn16WcEWS9KImT-vAC_0LUk7k9w78BTG8"
+  },
+  "now": 1793000000000,
+  "cases": [
+    {
+      "name": "valid",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.6dPhwWvCAqJ7t9O8VM-7VER_CO83QSlvCbvpBn81zfKVkk1aoSiq_nboCTEj090rF3Ax1OzGNNCHyAuCQjFPrg",
+      "email": "friend@example.com"
+    },
+    {
+      "name": "expired",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc4OTU0MDQwMCwiZXhwIjoxNzkyOTk5OTk5LCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.r8AlzNZVCXFvnxgcgYLx_hRnKdn8D2P4fkZtOI8tWu0NE_-aq2yfDiMjFzD2dxbWUyckc0TrVL6V-JYmPQFJ7g",
+      "email": null
+    },
+    {
+      "name": "expires exactly now",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzkzMDAwMDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.iu32AvJY-_EnFocQho-Aoe7_BWY714FnZjgLspwmeMLR4_MN24I3-zylT1F9_M2XIbv6Q-2VIfJO_HWw-Lpyxw",
+      "email": null
+    },
+    {
+      "name": "wrong audience",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJjb250aW5lbnRhbHdvcmtzLmFpIn0.WrARmACnJA9KMP267khHFC6UlhuJm3GZjEcisQHumYxZk4PV5umpdVbUSGX7B1xU2J6rVCPiqqw3ZtttM1kl8w",
+      "email": null
+    },
+    {
+      "name": "missing audience",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwfQ.qa-5XPIcKO4t8jrPL0YMXJAbSTw0UogWxAK18LIIviw4fVqUOukIW6VMA3dzLnKbeMhdlX6Vb7cpHItyA0dhsQ",
+      "email": null
+    },
+    {
+      "name": "signed by another key",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.AeVnvKwAvAayYVAPR_5m6NDfLMm71PyWMWxKyYTxrPUoNfme2jwniJ8z9q19zaQHkafc-RDKKrBN25xWHhL-NQ",
+      "email": null
+    },
+    {
+      "name": "payload swapped after signing",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcnlAZXhhbXBsZS5jb20iLCJpYXQiOjE3OTI5OTY0MDAsImV4cCI6MTc5NTU4ODQwMCwiYXVkIjoiZ2FyeXNoZW5nLmNvbSJ9.6dPhwWvCAqJ7t9O8VM-7VER_CO83QSlvCbvpBn81zfKVkk1aoSiq_nboCTEj090rF3Ax1OzGNNCHyAuCQjFPrg",
+      "email": null
+    },
+    {
+      "name": "signature truncated",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.6dPhwWvCAqJ7t9O8VM-7VER_CO83QSlvCbvpBn81",
+      "email": null
+    },
+    {
+      "name": "alg none",
+      "token": "eyJhbGciOiJub25lIn0.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.",
+      "email": null
+    },
+    {
+      "name": "alg HS256",
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.-xooZQecsdqRR1tswNVzfbti9cW8dKE1oNLDuOGLHMvYR0szv8uPtCxpbJNPy0YayRVwKABKZ72OHtTtCOjBkQ",
+      "email": null
+    },
+    {
+      "name": "two parts",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0",
+      "email": null
+    },
+    {
+      "name": "not base64url",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.6dPhwWvCAqJ7t9O8VM-7VER_CO83QSlvCbvpBn81zfKVkk1aoSiq_nboCTEj090rF3Ax1OzGNNCHyAuCQjFPrg!",
+      "email": null
+    },
+    {
+      "name": "garbage",
+      "token": "not-a-token",
+      "email": null
+    },
+    {
+      "name": "empty",
+      "token": "",
+      "email": null
+    },
+    {
+      "name": "uppercase email",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkZyaWVuZEBFeGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.UZzuNRZx8S02C6tXlOOq1YaT8FmFkdBH1n9dJXX5vZ6Q6dOki6tICi4eZY6tobcN_HbsTGW0g_Sy9Pi5fVReJQ",
+      "email": null
+    },
+    {
+      "name": "email not a string",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6WyJhQGIuYyJdLCJpYXQiOjE3OTI5OTY0MDAsImV4cCI6MTc5NTU4ODQwMCwiYXVkIjoiZ2FyeXNoZW5nLmNvbSJ9.vejqwnPjXP08RBOuOQcG-VqybIrYLIJv7bCCqSpHYNh1YELPusCt1BpvGQnU8MNN1ldk1wZVKoxdXqJk4jDmng",
+      "email": null
+    },
+    {
+      "name": "issued in the future",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5MzAwMzYwMCwiZXhwIjoxNzk1NTg4NDAwLCJhdWQiOiJnYXJ5c2hlbmcuY29tIn0.JWWQCp9BXn56cOAXGiFHU4sVHUX9P09A2N36Rpv3PjUP0ltQK3NOGdT2u_sKjj83EYtc9IpAXs7XJIGmBmYooA",
+      "email": null
+    },
+    {
+      "name": "exp not a number",
+      "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyaWVuZEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjk5NjQwMCwiZXhwIjoiMTc5NTU4ODQwMCIsImF1ZCI6ImdhcnlzaGVuZy5jb20ifQ.dqJcWyzqFlkfoVkZxPmPLVepgbYQfzXbgfEKWc6tXb3HAJP8lcJi4FSLUmM8cJHWHYYkJZV1QtSevPaemO2oww",
+      "email": null
+    }
+  ]
+}
