@@ -7,9 +7,7 @@
 # It is also the direction npm is forcing. Their own banner: "npm tokens that bypass 2FA
 # are being restricted, account changes (Aug 2026) and direct publishing (Jan 2027)."
 #
-# Copied from hyperspec's publish.yml on 2026-09-30, which carried it from superskill and
-# docusaurus-preset-wiki, where every comment below was earned. This package has tests and a build,
-# and both run before the publish.
+# The tests and the build run before the publish.
 # A long-lived automation token in a secret would work today and stop working on a date
 # somebody else picked.
 #
@@ -47,11 +45,11 @@ jobs:
     runs-on: ubuntu-latest
     # npm checks the environment claim inside the OIDC token, so a record that NAMES an
     # environment the job does not declare fails as ENEEDAUTH, with nothing said about
-    # environments. The trusted-publisher record for this package was created on 2026-09-30,
-    # right after the first publish of 0.1.0 (by hand, with web 2FA, because npm only attaches
-    # a trusted publisher to a package that already exists on the registry), with
+    # environments. The trusted-publisher record does not exist yet. npm only attaches a
+    # trusted publisher to a package that already exists on the registry, so it is created
+    # after the first manual publish of 0.1.0 (web 2FA), with
     #     npm trust github @supersuit/gv-identity --file publish.yml \
-    #       --repo SupersuitUp/gv-identity --allow-publish --allow-stage-publish
+    #       --repo SupersuitUp/gv-identity --allow-publish --allow-stage-publish --yes
     # It names no environment, so `environment: blank` below passes. If the record is ever
     # given an environment, this line must change to match it in the same sitting. Every
     # release after 0.1.0 is a tag push through this workflow.

@@ -4,7 +4,7 @@ The one verifier for the `gv_id` cookie: the single sign-in shared by every gary
 
 ## What the cookie is
 
-A compact JWS signed with ES256 (P-256). The payload is exactly `{ email, iat, exp, aud }`. One issuer holds the private key. Every site that reads the cookie holds the public key.
+A compact JWS signed with ES256 (P-256). The payload carries `{ email, iat, exp, aud }`; other claims are ignored. One issuer holds the private key. Every site that reads the cookie holds the public key.
 
 ## What it never grants
 
@@ -35,7 +35,13 @@ Also exported: `readCookie`, `gvSignInUrl`, `GV_ID_COOKIE`, `GV_ID_AUDIENCE`, `G
 
 ## The vectors file
 
-`test/gv-identity.vectors.json` holds 18 cases signed once with a throwaway key (its public half is in the file). It is shipped in the package and is the same file every app carries. A reader that answers every case as the file says behaves like every other reader. Run it with `npm test`.
+`test/gv-identity.vectors.json` holds 18 cases signed once with a throwaway key (its public half is in the file). It is shipped in the package and is the same file every app carries. A reader that answers every case as the file says behaves like every other reader. Run it with `npm test`. An app imports the same file from the package:
+
+```ts
+import vectors from '@supersuit/gv-identity/vectors.json' with { type: 'json' }
+```
+
+Then run each case through `verifyGvId` with `vectors.publicJwk` and `vectors.now`, and expect `case.email` (or `null`).
 
 ## License
 

@@ -1,6 +1,6 @@
 // @supersuit/gv-identity: the ONE verifier for the `gv_id` cookie, the single sign-in shared by every garysheng.com site.
 //
-// The cookie is a compact JWS, ES256 (P-256), payload exactly { email, iat, exp, aud }. One issuer holds the private
+// The cookie is a compact JWS, ES256 (P-256), payload carries { email, iat, exp, aud }; other claims are ignored. One issuer holds the private
 // key; every reader holds the public key and passes it in, with the audience it expects. The cookie says WHO, never
 // what they may open: each site applies its own rule to the email this returns.
 //

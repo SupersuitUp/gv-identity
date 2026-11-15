@@ -8,9 +8,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./vectors.json": "./test/gv-identity.vectors.json",
     "./package.json": "./package.json"
   },
-  "files": ["dist/", "README.md", "LICENSE", "test/gv-identity.vectors.json"],
+  "files": [
+    "dist/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "test/gv-identity.vectors.json"
+  ],
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/check-dist.mjs",
     "prepack": "npm run build",
@@ -18,11 +25,25 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "check": "npm run typecheck && npm test && npm run build"
   },
-  "engines": { "node": ">=20.9" },
+  "engines": {
+    "node": ">=20.9"
+  },
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/SupersuitUp/gv-identity.git" },
-  "publishConfig": { "access": "public" },
-  "keywords": ["supersuit", "gv_id", "jws", "es256", "web-crypto", "edge"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SupersuitUp/gv-identity.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "supersuit",
+    "gv_id",
+    "jws",
+    "es256",
+    "web-crypto",
+    "edge"
+  ],
   "devDependencies": {
     "@types/node": "^20.19.43",
     "typescript": "^5.9.3",

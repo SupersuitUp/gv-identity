@@ -30,6 +30,16 @@ describe('verifyGvId against the shared vectors', () => {
   })
 })
 
+describe('regression: a missing or wrong option refuses (it already failed closed)', () => {
+  const valid = vectors.cases.find(c => c.name === 'valid')!
+  it('refuses no options, no audience, no key and an oct key', async () => {
+    expect(await verifyGvId(valid.token, undefined as any)).toBeNull()
+    expect(await verifyGvId(valid.token, { publicKeyJwk: vectors.publicJwk, now: vectors.now } as any)).toBeNull()
+    expect(await verifyGvId(valid.token, { audience: GV_ID_AUDIENCE, now: vectors.now } as any)).toBeNull()
+    expect(await verifyGvId(valid.token, { audience: GV_ID_AUDIENCE, now: vectors.now, publicKeyJwk: { kty: 'oct', k: 'AAAA' } })).toBeNull()
+  })
+})
+
 describe('readCookie and gvSignInUrl', () => {
   it('reads gv_id out of a Cookie header', () => {
     expect(readCookie('a=1; gv_id=abc.def.ghi; b=2')).toBe('abc.def.ghi')
